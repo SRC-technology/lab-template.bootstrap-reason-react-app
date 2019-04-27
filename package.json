@@ -4,7 +4,8 @@
   "scripts": {
     "build": "bsb -make-world && fpack build ./lib/js/src/Index.bs.js --development",
     "start": "bsb -make-world -w",
-    "clean": "bsb -clean-world"
+    "clean": "bsb -clean-world",
+    "refmt": "bsrefmt --in-place src/*"
   },
   "keywords": [
     "BuckleScript"
