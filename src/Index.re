@@ -204,9 +204,7 @@ module Components = {
                  <Task
                    key=Model.Task.(task.id)
                    task
-                   onDone={task_id =>
-                     Model.Action.Complete_task(task_id) |> dispatch
-                   }
+                   onDone={_ => () /* Handle task completion here */}
                  />
                )
             |> Array.of_list
