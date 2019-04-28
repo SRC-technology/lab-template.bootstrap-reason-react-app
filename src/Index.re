@@ -190,7 +190,7 @@ module Components = {
           }
           onChange={e => {
             let text = ReactEvent.Form.target(e)##value;
-            dispatch(Write(text));
+            Write(text) |> dispatch;
           }}
         />
         <button onClick={_ => dispatch(Add_task)}>
@@ -203,7 +203,7 @@ module Components = {
                  <Task
                    key={Model.Task.(task.id)}
                    task
-                   onDone={task_id => dispatch(Complete_task(task_id))}
+                   onDone={task_id => Complete_task(task_id) |> dispatch}
                  />
                )
             |> Array.of_list
