@@ -1,16 +1,19 @@
 {
-  "name": "wat",
+  "name": "toodoo",
   "version": "0.1.0",
   "scripts": {
-    "build": "bsb -make-world && fpack build ./lib/js/src/Index.bs.js --development",
+    "build": "bsb -make-world && fpack build ./lib/js/src/index.bs.js --development",
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world",
     "refmt": "bsrefmt --in-place src/*"
   },
   "keywords": [
-    "BuckleScript"
+    "BuckleScript",
+    "Reason",
+    "ReasonReact",
+    "Github Learning Lab",
+    "Learn You Some Reason"
   ],
-  "author": "",
   "license": "MIT",
   "devDependencies": {
     "bs-platform": "^5.0.0",
