@@ -1,5 +1,5 @@
 {
-  "name": "toodoo",
+  "name": "todo-app",
   "version": "0.1.0",
   "scripts": {
     "build": "bsb -make-world && fpack build ./lib/js/src/index.bs.js --development",

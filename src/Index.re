@@ -59,7 +59,7 @@ module Model = {
       | /** A task that is Done is a task that has been completed. */
         Done;
 
-    /** The type of a task in the TooDoo app. */
+    /** The type of a task in the ToDo app. */
     type t = {
       /** Every task should have a unique id */
       id: string,
@@ -146,7 +146,7 @@ module Model = {
 };
 
 module Components = {
-  /** This module creates all the components we will need in our TooDoo
+  /** This module creates all the components we will need in our ToDo
       application:
 
       * A Task component, that will show a single task
@@ -171,8 +171,8 @@ module Components = {
     };
   };
 
-  module TooDoo = {
-    /** The main component of our application, it initializes TooDoo app with
+  module ToDo = {
+    /** The main component of our application, it initializes ToDo app with
         an initial state and hooks up the reducer and actions with the DOM
         events. */
     [@react.component]
@@ -197,7 +197,7 @@ module Components = {
             }
             onChange={e => {
               let text = ReactEvent.Form.target(e)##value;
-              Write(text) |> dispatch;
+              Model.Action.Write(text) |> dispatch;
             }}
           />
           <button type_="submit" title="add" />
@@ -209,7 +209,7 @@ module Components = {
                  <Task
                    key={Model.Task.(task.id)}
                    task
-                   onDone={task_id => Complete_task(task_id) |> dispatch}
+                   onDone={task_id => Model.Action.Complete_task(task_id) |> dispatch}
                  />
                )
             |> Array.of_list
@@ -221,4 +221,4 @@ module Components = {
   };
 };
 
-ReactDOMRe.renderToElementWithId(<Components.TooDoo />, "app");
+ReactDOMRe.renderToElementWithId(<Components.ToDo />, "app");
