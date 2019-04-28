@@ -180,7 +180,7 @@ module Components = {
         <form
           onSubmit={e => {
             ReactEvent.Form.preventDefault(e);
-            dispatch(Add_task);
+            /* Handle adding a new task here */
           }}>
           <input
             placeholder="What do you need to do?"
