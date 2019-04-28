@@ -15,7 +15,7 @@
     * Reason modules are first-class, like functions, and they are defined with
       a special syntax: `module Module_name = { ... };`
 
-    * Modules are global! 
+    * Modules are global!
 
   ## Types
 
@@ -43,7 +43,6 @@
   duplicate(three);
   ```
 */
-
 module Model = {
   /** This module defines 3 things for our application:
 
@@ -155,18 +154,15 @@ module Components = {
   module Task = {
     [@react.component]
     let make = (~task, ~onDone) => {
-      <li 
-        className={Model.Task.(switch (task.status) {
+      <li
+        className=Model.Task.(
+          switch (task.status) {
           | Pending => "pending"
           | Done => "done"
-        })}>
-        <button 
-          title="done"
-          onClick={_ => onDone(Model.Task.(task.id))}
-        />
-        <span>
-          Model.Task.(React.string(task.label))
-        </span>
+          }
+        )>
+        <button title="done" onClick={_ => onDone(Model.Task.(task.id))} />
+        <span> Model.Task.(React.string(task.label)) </span>
       </li>;
     };
   };
@@ -181,20 +177,19 @@ module Components = {
         Model.State.(React.useReducer(reducer, initial_state));
 
       <div>
-        <form 
+        <form
           onSubmit={e => {
             ReactEvent.Form.preventDefault(e);
-            dispatch(Add_task)
+            dispatch(Add_task);
           }}>
           <input
             placeholder="What do you need to do?"
-            value={
-              Model.State.(
+            value=Model.State.(
               switch (state.input) {
               | None => ""
               | Some(str) => str
-              })
-            }
+              }
+            )
             onChange={e => {
               let text = ReactEvent.Form.target(e)##value;
               Model.Action.Write(text) |> dispatch;
@@ -207,9 +202,11 @@ module Components = {
             state.tasks
             |> List.map(task =>
                  <Task
-                   key={Model.Task.(task.id)}
+                   key=Model.Task.(task.id)
                    task
-                   onDone={task_id => Model.Action.Complete_task(task_id) |> dispatch}
+                   onDone={task_id =>
+                     Model.Action.Complete_task(task_id) |> dispatch
+                   }
                  />
                )
             |> Array.of_list
