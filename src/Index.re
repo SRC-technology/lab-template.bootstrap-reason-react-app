@@ -157,13 +157,13 @@ module Components = {
     let make = (~task, ~onDone) => {
       <li>
         <span>
-          {switch (task.App.Task.status) {
+          {Model.Task.(switch (task.status) {
            | Pending => "pending" |> React.string
            | Done => "done" |> React.string
-           }}
+           })}
         </span>
-        <span> App.Task.(React.string(task.label)) </span>
-        <button onClick={_ => onDone(task.App.Task.id)}>
+        <span> Model.Task.(React.string(task.label)) </span>
+        <button onClick={_ => onDone(Model.Task.(task.id))}>
           {React.string("done")}
         </button>
       </li>;
@@ -177,15 +177,16 @@ module Components = {
     [@react.component]
     let make = () => {
       let (state, dispatch) =
-        App.State.(React.useReducer(reducer, initial_state));
+        Model.State.(React.useReducer(reducer, initial_state));
 
       <div>
         <input
           value={
-            switch (state.App.State.input) {
+            Model.State.(
+            switch (state.input) {
             | None => ""
             | Some(str) => str
-            }
+            })
           }
           onChange={e => {
             let text = ReactEvent.Form.target(e)##value;
@@ -196,11 +197,11 @@ module Components = {
           {React.string("add")}
         </button>
         <ul>
-          App.State.(
+          Model.State.(
             state.tasks
             |> List.map(task =>
                  <Task
-                   key={task.App.Task.id}
+                   key={Model.Task.(task.id)}
                    task
                    onDone={task_id => dispatch(Complete_task(task_id))}
                  />
