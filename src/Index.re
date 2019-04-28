@@ -191,8 +191,8 @@ module Components = {
               }
             )
             onChange={e => {
-              let text = ReactEvent.Form.target(e)##value;
-              Model.Action.Write(text) |> dispatch;
+              let _ = ReactEvent.Form.target(e)##value;
+              /* Handle storing the text here */
             }}
           />
           <button type_="submit" title="add" />
